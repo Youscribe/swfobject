@@ -13,6 +13,7 @@ var swfobject = function () {
         FLASH_MIME_TYPE = "application/x-shockwave-flash",
         EXPRESS_INSTALL_ID = "SWFObjectExprInst",
         ON_READY_STATE_CHANGE = "onreadystatechange",
+        REGEX_IE_10 = "MSIE 10.0",
 
         win = window,
         doc = document,
@@ -45,7 +46,7 @@ var swfobject = function () {
             windows = p ? /win/.test(p) : /win/.test(u),
             mac = p ? /mac/.test(p) : /mac/.test(u),
             webkit = /webkit/.test(u) ? parseFloat(u.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, // returns either the webkit version or false if not webkit
-            ie = nav.appName === "Microsoft Internet Explorer",
+            ie = (nav.appName === "Microsoft Internet Explorer" && nav.appVersion.match(REGEX_IE_10) === null),
             playerVersion = [0, 0, 0],
             d = null;
         if (typeof nav.plugins !== UNDEF && typeof nav.plugins[SHOCKWAVE_FLASH] === OBJECT) {
